@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import TopMenuBootstrap from './components/TopMenuBootstrap';
+import PublicPage from './components/PublicPage';
 
-function App() {
+const {log} = console
+
+
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+        <TopMenuBootstrap />
+        <PublicPage />
+      
     </div>
   );
 }
-
-export default App;

@@ -1,17 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import rootReducer from './reducer/RootReducer'
+
+
+/** Durch 'document.getElementById('root')'  hole ich mir div-element, was ersetzt werden soll.
+ * Das bedeutet, dass ich auch in der index.html TAGs einführen / einfügen können, 
+ * die dann immer bei allen Seiten der REACT-App entahlten sind, bswp.: links zu CSS-Dateien
+  */
+
+const store = createStore(rootReducer)
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+);

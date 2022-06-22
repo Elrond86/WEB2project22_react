@@ -1,10 +1,10 @@
-import React, { Component } from "react"
+import React from "react"
 import { connect } from 'react-redux'
 
 
 import Button from 'react-bootstrap/Button'
-/* import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
- */
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+
 import { getShowLoginDialogAction } from "../actions/AuthenticationActions"
 
 const {log} = console

@@ -17,14 +17,14 @@ function rootReducer(state = initialState, action) {
 
     switch (action.type) {
         case authenticationActions.SHOW_LOGIN_DIALOG:
-            let state = {
+            let newState = {
                 ...state,   //um einzelne Werte zu ändern
                 showLoginDialog: true,
                 error: null,
             }
             log("Hier Reducer: mein newState ist: ")
-            log(state)
-            return state
+            log(newState)
+            return newState
         
         default:
             log("Hier Reducer: mein State ist immernoch: ")

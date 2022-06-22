@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-/* import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
- */
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+
 const {log} = console
 
 /**mapStateToProps () kopiert sich aus dem State jene Daten, die für die

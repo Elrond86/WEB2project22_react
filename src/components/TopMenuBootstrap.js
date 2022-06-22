@@ -4,13 +4,11 @@ import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import LoginButtonBootstrap from './LoginButtonBootstrap'
-/* import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
- */
+/* import LoginButtonBootstrap from './LoginButtonBootstrap' */
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+
 //import UserSessionWidgetBootstrap from './UserSessionWidgetBootstrap';
 import ConnectedUserSessionWidgetBootstrap from './UserSessionWidgetBootstrap';
-
-const {log} = console
 
 
 class TopMenu extends Component {

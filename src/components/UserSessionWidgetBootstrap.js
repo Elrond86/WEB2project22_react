@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useReducer } from "react"
 import { connect } from 'react-redux'
 
 import Button from 'react-bootstrap/Button'
@@ -19,6 +19,7 @@ const mapStateToProps = state => {
 
   function UserSessionWidgetBootstrap(props) {
     log("bin in UserSessionWidgetBootstrap")
+    const [state, dispatch] = useReducer(reducer, initialState)
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);

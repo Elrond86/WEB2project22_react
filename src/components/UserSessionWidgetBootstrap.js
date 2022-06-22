@@ -1,11 +1,11 @@
 import React, { useState, useReducer } from "react"
 import { connect } from 'react-redux'
-
+//import rootReducer from "../reducer/RootReducer"
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
-const {log} = console
+const { log } = console
 
 /**mapStateToProps () kopiert sich aus dem State jene Daten, die für die
 Komponente von Relevanz sind. 
@@ -17,45 +17,45 @@ const mapStateToProps = state => {
 }
 
 
-  function UserSessionWidgetBootstrap(props) {
-    log("bin in UserSessionWidgetBootstrap")
-    const [state, dispatch] = useReducer(reducer, initialState)
-    const [show, setShow] = useState(false);
+function UserSessionWidgetBootstrap(props) {
+  log("bin in UserSessionWidgetBootstrap")
+  console.log(props)
+  //const [state, dispatch] = useReducer(props.rootReducer, props.state)
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    
-    var showModal = props.showLoginDialog;
-    if(showModal === undefined){
-      showModal = false;
-    }
-    log("showModal: ")
-    log(showModal)
-    return (
-      
-      <>
-        <Button variant="primary" onClick={handleShow}>
-          Login
-        </Button>
-
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={handleClose}>
-              Save Changes
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </>
-    );
+  var showModal = props.showLoginDialog;
+  if (showModal === undefined) {
+    showModal = false;
   }
+  log("showModal: ")
+  log(showModal)
+  return (
 
-  const ConnectedUserSessionWidgetBootstrap = connect(mapStateToProps, null)(UserSessionWidgetBootstrap)
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        Login
+      </Button>
 
-  export default ConnectedUserSessionWidgetBootstrap
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+}
+
+const ConnectedUserSessionWidgetBootstrap = connect(mapStateToProps, null)(UserSessionWidgetBootstrap)
+
+export default ConnectedUserSessionWidgetBootstrap

@@ -1,25 +1,41 @@
 {
-    "favorites.resources": [
-        {
-            "filePath": "src\\components",
-            "group": "Default"
-        },
-        {
-            "filePath": "src\\App.css",
-            "group": "Default"
-        },
-        {
-            "filePath": "src\\App.js",
-            "group": "Default"
-        },
-        {
-            "filePath": "src\\index.js",
-            "group": "Default"
-        }
-    ],
-    "editor.tokenColorCustomizations": {
-        "comments": "",
-        "textMateRules": []
-    },
-    "editor.detectIndentation": true
+	"favorites.resources": [
+		{
+			"filePath": "src\\components",
+			"group": "Default"
+		},
+		{
+			"filePath": "src\\App.css",
+			"group": "Default"
+		},
+		{
+			"filePath": "src\\App.js",
+			"group": "Default"
+		},
+		{
+			"filePath": "src\\index.js",
+			"group": "Default"
+		},
+		{
+			"filePath": "src\\reducer\\RootReducer.js",
+			"group": "Default"
+		},
+		{
+			"filePath": "src\\components\\UserSessionWidgetBootstrap.js",
+			"group": "Default"
+		},
+		{
+			"filePath": "src\\components\\LoginButtonBootstrap.js",
+			"group": "Default"
+		},
+		{
+			"filePath": "src\\actions\\AuthenticationActions.js",
+			"group": "Default"
+		}
+	],
+	"editor.tokenColorCustomizations": {
+		"comments": "",
+		"textMateRules": []
+	},
+	"editor.detectIndentation": true
 }

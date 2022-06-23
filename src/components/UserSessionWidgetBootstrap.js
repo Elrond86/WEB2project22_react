@@ -2,11 +2,14 @@ import React, { useState, useReducer } from 'react';
 import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import * as auhenticationActions from '../actions/AuthenticationActions';
 
 import { bindActionCreators } from 'redux';
+import rootReducer from '../reducer/RootReducer';
 
 const { log } = console;
 
@@ -14,29 +17,44 @@ const { log } = console;
 Komponente von Relevanz sind. 
 Name ist wohl nicht keyword, aber ist Konvention und auch in den REACT-Docs wird das genutzt */
 const mapStateToProps = (state) => {
-	log('Bin in UserSessionWidgetBootstrap/mapStateToProps. State: ');
-	log(state);
 	return state;
 };
 
 function UserSessionWidgetBootstrap(props) {
-	log('bin in UserSessionWidgetBootstrap');
-	console.log(props);
+	const [credentials, setCredentials] = useState({
+		userID: '',
+		password: '',
+	});
 
-	const handleClose = (e) => {
-		e.preventDefault();
+	function handleClose(event) {
+		event.preventDefault();
 		props.hideLoginDialogAction();
+	}
+
+	function handleShow() {
+		props.showLoginDialogAction();
+	}
+
+	const handleChange = (event) => {
+		const { name, value } = event.target;
+		setCredentials({
+			...credentials,
+			[name]: value,
+		});
+		log('credentials: ');
+		log(JSON.stringify(credentials));
 	};
 
-	const handleShow = () => {
-		props.showLoginDialogAction();
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		log('pushed Submit');
 	};
+
 	var showModal = props.showLoginDialog;
 	if (showModal === undefined) {
 		showModal = false;
 	}
-	log('showModal: ');
-	log(showModal);
+
 	return (
 		<>
 			<Button variant="primary" onClick={handleShow}>
@@ -45,9 +63,35 @@ function UserSessionWidgetBootstrap(props) {
 
 			<Modal show={showModal} onHide={handleClose}>
 				<Modal.Header>
-					<Modal.Title>Modal heading</Modal.Title>
+					<Modal.Title>Please Enter Credentials</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+				<Modal.Body>
+					<Form>
+						<Form.Group className="mb-3" controlId="formBasicEmail">
+							<Form.Label>Username</Form.Label>
+							<Form.Control
+								type="userID"
+								placeholder="Enter name"
+								name="userID"
+								onChange={handleChange}
+							/>
+						</Form.Group>
+
+						<Form.Group className="mb-3" controlId="formBasicPassword">
+							<Form.Label>Password</Form.Label>
+							<Form.Control
+								type="password"
+								placeholder="Password"
+								name="password"
+								onChange={handleChange}
+							/>
+						</Form.Group>
+
+						<Button variant="primary" type="submit" onClick={handleSubmit}>
+							Submit
+						</Button>
+					</Form>
+				</Modal.Body>
 				<Modal.Footer>
 					<Button variant="secondary" onClick={handleClose}>
 						Close

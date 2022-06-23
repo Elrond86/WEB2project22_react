@@ -10,19 +10,16 @@ const initialState = {
 };
 
 function rootReducer(state = initialState, action) {
-	log('Hier Reducer: mein State ist: ');
-	log(state);
-	log('Hier Reducer: Erstmals initialisiert oder erhielt Action-Type: ' + action.type);
-	log('Hier Reducer: Passende Actions werden verarbeitet...');
-
 	switch (action.type) {
 		case authenticationActions.SHOW_LOGIN_DIALOG:
+			log('Hier Reducer: ' + action.type);
 			return {
 				...state, //um einzelne Werte zu ändern
 				showLoginDialog: true,
 				error: null,
 			};
 		case authenticationActions.HIDE_LOGIN_DIALOG:
+			log('Hier Reducer: ' + action.type);
 			return {
 				...state,
 				showLoginDialog: false,
@@ -30,7 +27,7 @@ function rootReducer(state = initialState, action) {
 			};
 
 		default:
-			log('Hier Reducer: mein State ist immernoch: ');
+			//log('Hier Reducer: mein State ist immernoch: ');
 			log(state);
 			return state;
 	}

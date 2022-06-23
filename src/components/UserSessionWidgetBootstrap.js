@@ -47,7 +47,10 @@ function UserSessionWidgetBootstrap(props) {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		log('pushed Submit');
+		const { userID, password } = credentials;
+		const { authenticateUserAction } = props;
+		authenticateUserAction(userID, password);
+		log('Pushed Submit');
 	};
 
 	var showModal = props.showLoginDialog;
@@ -70,8 +73,9 @@ function UserSessionWidgetBootstrap(props) {
 						<Form.Group className="mb-3" controlId="formBasicEmail">
 							<Form.Label>Username</Form.Label>
 							<Form.Control
+								id="LoginUserIDInput"
 								type="userID"
-								placeholder="Enter name"
+								placeholder="User ID"
 								name="userID"
 								onChange={handleChange}
 							/>
@@ -80,6 +84,7 @@ function UserSessionWidgetBootstrap(props) {
 						<Form.Group className="mb-3" controlId="formBasicPassword">
 							<Form.Label>Password</Form.Label>
 							<Form.Control
+								id="LoginPasswordInput"
 								type="password"
 								placeholder="Password"
 								name="password"
@@ -87,7 +92,12 @@ function UserSessionWidgetBootstrap(props) {
 							/>
 						</Form.Group>
 
-						<Button variant="primary" type="submit" onClick={handleSubmit}>
+						<Button
+							id="LoginButton"
+							variant="primary"
+							type="submit"
+							onClick={handleSubmit}
+						>
 							Submit
 						</Button>
 					</Form>

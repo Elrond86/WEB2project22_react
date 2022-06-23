@@ -16,7 +16,12 @@ function LoginButtonBootstrap(props) {
 
 	return (
 		<div>
-			<Button variant="outline-secondary" active onClick={showLoginDialog}>
+			<Button
+				id="OpenLoginDialogButton"
+				variant="outline-secondary"
+				active
+				onClick={showLoginDialog}
+			>
 				Login
 			</Button>
 		</div>

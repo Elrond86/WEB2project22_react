@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import Stopwatch from './standAlone/StopWatch';
-
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -38,9 +36,7 @@ class TopMenu extends Component {
 									</NavDropdown.Item>
 								</NavDropdown>
 							</Nav>
-							<Nav>
-								<Stopwatch />
-							</Nav>
+
 							<Nav>
 								<ConnectedUserSessionWidgetBootstrap />
 							</Nav>

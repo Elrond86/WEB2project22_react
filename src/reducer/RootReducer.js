@@ -25,6 +25,13 @@ function rootReducer(state = initialState, action) {
 				showLoginDialog: false,
 				error: null,
 			};
+		case authenticationActions.AUTHENTICATION_PENDING:
+			log('Hier Reducer: ' + action.type);
+			return {
+				...state,
+				loginPending: true,
+				error: null,
+			};
 
 		default:
 			//log('Hier Reducer: mein State ist immernoch: ');

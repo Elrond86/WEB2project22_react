@@ -2,7 +2,7 @@ button {
 	margin: 5px;
 }
 
-div {
+.stopwatch {
 	max-width: 200px;
 	text-align: center;
 }

@@ -5,12 +5,13 @@
 body {
 	font-family: sans-serif;
 	margin: 3rem;
-	background-color: hsl(200, 0%, 100%);
+	background-color: hsl(0, 100%, 0%);
 }
 
 .main {
 	text-align: center;
 	align-items: center;
+	background-color: hsl(0, 0%, 80%);
 }
 
 .watchBox {
@@ -51,7 +52,6 @@ h2 {
 
 .card {
 	margin: auto;
-	background-color: white;
 	border-radius: 4px;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 	padding: 1rem;

@@ -14,7 +14,7 @@ class TopMenu extends Component {
 	render() {
 		return (
 			<div>
-				<Navbar bg="light" expand="lg">
+				<Navbar bg="dark" variant="dark" expand="lg">
 					<Container>
 						<Navbar.Brand href="#home">Web2 - Menu</Navbar.Brand>
 						<Navbar.Toggle aria-controls="basic-navbar-nav" />

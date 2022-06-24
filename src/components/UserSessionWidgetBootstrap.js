@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -10,7 +10,6 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import * as auhenticationActions from '../actions/AuthenticationActions';
 
 import { bindActionCreators } from 'redux';
-import rootReducer from '../reducer/RootReducer';
 
 const { log } = console;
 

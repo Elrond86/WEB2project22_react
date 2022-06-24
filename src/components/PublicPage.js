@@ -4,7 +4,7 @@ import Stopwatch from './standAlone/StopWatch';
 export default function PublicPage() {
 	return (
 		<div className="main">
-			<h1>Public Page</h1>
+			<h1>Landing Page</h1>
 			<section className="card">
 				<div className="watchBox">
 					<Stopwatch />

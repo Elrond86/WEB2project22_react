@@ -65,13 +65,13 @@ function UserSessionWidgetBootstrap(props) {
 	let Btn;
 	if (props.user && props.user != null) {
 		Btn = (
-			<Button variant="primary" onClick={handleLogout}>
+			<Button variant="primary" id="LogoutButton" onClick={handleLogout}>
 				Logout
 			</Button>
 		);
 	} else {
 		Btn = (
-			<Button variant="primary" onClick={handleShow}>
+			<Button variant="primary" id="OpenLoginDialogButton" onClick={handleShow}>
 				Login
 			</Button>
 		);

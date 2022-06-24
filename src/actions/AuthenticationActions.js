@@ -1,13 +1,10 @@
-/* import { ListGroup } from 'react-bootstrap';
-import ConnectedUserSessionWidgetBootstrap from '../components/UserSessionWidgetBootstrap';
- */
-
 export const SHOW_LOGIN_DIALOG = 'SHOW_LOGIN_DIALOG';
 export const HIDE_LOGIN_DIALOG = 'HIDE_LOGIN_DIALOG';
 
 export const AUTHENTICATION_PENDING = 'AUTHENTICATION_PENDING';
 export const AUTHENTICATION_SUCCESS = 'AUTHENTICATION_SUCCESS';
 export const AUTHENTICATION_ERROR = 'AUTHENTICATION_ERROR';
+export const USER_LOGOUT = 'USER_LOGOUT';
 
 export function getShowLoginDialogAction() {
 	return {
@@ -41,6 +38,12 @@ export function getAuthenticationErrorAction() {
 	};
 }
 
+export function getLogoutAction() {
+	return {
+		type: USER_LOGOUT,
+	};
+}
+
 export function authenticateUser(userID, password) {
 	console.log('Authenticate');
 
@@ -63,7 +66,7 @@ export function authenticateUser(userID, password) {
 
 function login(userID, password) {
 	const requestOptions = {
-		method: 'POST',
+		method: 'GET',
 		headers: { Authorization: 'Basic ' + btoa(userID + ':' + password) },
 	};
 
@@ -75,11 +78,13 @@ function login(userID, password) {
 }
 
 function handleResponse(response) {
-	const authorizationHeader = response.headers.get('Authorization');
-	return response.text().then((text) => {
-		const data = text && JSON.parse(text);
+	const authorizationHeader = response.headers.get('Authorization'); //holt Auth-Element von Header (da wo der Token drin ist)
 
-		let token;
+	return response.text().then((text) => {
+		console.log('Recieve result: ' + authorizationHeader);
+		console.log(text);
+		const data = text && JSON.parse(text);
+		var token;
 		if (authorizationHeader) {
 			token = authorizationHeader.split(' ')[1];
 		}

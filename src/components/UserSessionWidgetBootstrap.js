@@ -70,10 +70,9 @@ function UserSessionWidgetBootstrap(props) {
 				</Modal.Header>
 				<Modal.Body>
 					<Form>
-						<Form.Group className="mb-3" controlId="formBasicEmail">
-							<Form.Label>Username</Form.Label>
+						<Form.Group className="mb-3" controlId="LoginUserIDInput">
+							<Form.Label>User ID</Form.Label>
 							<Form.Control
-								id="LoginUserIDInput"
 								type="userID"
 								placeholder="User ID"
 								name="userID"
@@ -81,10 +80,9 @@ function UserSessionWidgetBootstrap(props) {
 							/>
 						</Form.Group>
 
-						<Form.Group className="mb-3" controlId="formBasicPassword">
+						<Form.Group className="mb-3" controlId="LoginPasswordInput">
 							<Form.Label>Password</Form.Label>
 							<Form.Control
-								id="LoginPasswordInput"
 								type="password"
 								placeholder="Password"
 								name="password"
@@ -123,7 +121,7 @@ const mapDispatchToProps = (dispatch) =>
 		{
 			showLoginDialogAction: auhenticationActions.getShowLoginDialogAction,
 			hideLoginDialogAction: auhenticationActions.getHideLoginDialogAction,
-			//authenticatUserAction: auhenticationActions.authenticationUser
+			authenticateUserAction: auhenticationActions.authenticateUser,
 		},
 		dispatch
 	);

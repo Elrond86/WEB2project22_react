@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import Spinner from 'react-bootstrap/Spinner';
 
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
@@ -53,16 +54,43 @@ function UserSessionWidgetBootstrap(props) {
 		log('Pushed Submit');
 	};
 
+	function handleLogout() {
+		props.logoutAction();
+	}
+
 	var showModal = props.showLoginDialog;
 	if (showModal === undefined) {
 		showModal = false;
 	}
 
-	return (
-		<>
+	let Btn;
+	if (props.user && props.user != null) {
+		Btn = (
+			<Button variant="primary" onClick={handleLogout}>
+				Logout
+			</Button>
+		);
+	} else {
+		Btn = (
 			<Button variant="primary" onClick={handleShow}>
 				Login
 			</Button>
+		);
+	}
+
+	let loginPending = props.loginPending;
+	if (loginPending === undefined) {
+		loginPending = false;
+	}
+
+	let isError = props.error;
+	if (isError === undefined) {
+		isError = false;
+	}
+
+	return (
+		<>
+			{Btn}
 
 			<Modal show={showModal} onHide={handleClose}>
 				<Modal.Header>
@@ -98,16 +126,24 @@ function UserSessionWidgetBootstrap(props) {
 						>
 							Submit
 						</Button>
+						<Button variant="secondary" onClick={handleClose}>
+							Close
+						</Button>
+						{isError && (
+							<Form.Label style={{ color: 'red', marginLeft: '20px' }}>
+								Invalid user ID or password
+							</Form.Label>
+						)}
+						{loginPending && (
+							<Spinner
+								animation="border"
+								variant="primary"
+								style={{ marginLeft: '20px' }}
+							/>
+						)}
 					</Form>
 				</Modal.Body>
-				<Modal.Footer>
-					<Button variant="secondary" onClick={handleClose}>
-						Close
-					</Button>
-					<Button variant="primary" onClick={handleClose}>
-						Save Changes
-					</Button>
-				</Modal.Footer>
+				<Modal.Footer>Footer</Modal.Footer>
 			</Modal>
 		</>
 	);
@@ -122,6 +158,7 @@ const mapDispatchToProps = (dispatch) =>
 			showLoginDialogAction: auhenticationActions.getShowLoginDialogAction,
 			hideLoginDialogAction: auhenticationActions.getHideLoginDialogAction,
 			authenticateUserAction: auhenticationActions.authenticateUser,
+			logoutAction: auhenticationActions.getLogoutAction,
 		},
 		dispatch
 	);

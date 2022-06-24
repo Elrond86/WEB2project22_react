@@ -1,3 +1,5 @@
+import jwt_decode from 'jwt-decode';
+
 export const SHOW_LOGIN_DIALOG = 'SHOW_LOGIN_DIALOG';
 export const HIDE_LOGIN_DIALOG = 'HIDE_LOGIN_DIALOG';
 
@@ -28,7 +30,7 @@ export function getAuthenticationSuccessAction(userSession) {
 	return {
 		type: AUTHENTICATION_SUCCESS,
 		user: userSession.user,
-		accessToken: userSession.accessToken,
+		accessToken: userSession.token,
 	};
 }
 
@@ -70,42 +72,37 @@ function login(userID, password) {
 		headers: { Authorization: 'Basic ' + btoa(userID + ':' + password) },
 	};
 
-	return fetch('http://localhost:8080/authenticate', requestOptions)
+	return fetch('https://localhost/authenticate', requestOptions)
 		.then(handleResponse)
 		.then((userSession) => {
 			return userSession;
 		});
 }
 
-function handleResponse(response) {
-	const authorizationHeader = response.headers.get('Authorization'); //holt Auth-Element von Header (da wo der Token drin ist)
+async function handleResponse(resolvedResponse) {
+	const authorizationHeader = resolvedResponse.headers.get('Authorization'); //holt Auth-Element von Header (da wo der Token drin ist)
 
-	return response.text().then((text) => {
-		console.log('Recieve result: ' + authorizationHeader);
-		console.log(text);
-		const data = text && JSON.parse(text);
-		var token;
-		if (authorizationHeader) {
-			token = authorizationHeader.split(' ')[1];
+	let token;
+	if (authorizationHeader) {
+		token = authorizationHeader.split(' ')[1];
+	}
+	var decoded = jwt_decode(token);
+	console.log('decoded');
+	console.log(decoded);
+	if (!resolvedResponse.ok) {
+		if (resolvedResponse.status === 401) {
+			// auto logout if 401 resolvedResponse returned from api
+			getLogoutAction();
 		}
-
-		if (!response.ok) {
-			if (response.status === 401) {
-				// auto logout if 401 response returned from api
-				logout();
-			}
-			const error = (data && data.message) || response.statusText;
-			return Promise.reject(error);
-		} else {
-			let userSession = {
-				user: data,
-				accessToken: token,
-			};
-			return userSession;
-		}
-	});
+	} else {
+		let userSession = {
+			user: decoded,
+			accessToken: authorizationHeader,
+		};
+		return userSession;
+	}
 }
 
-function logout() {
-	console.log('Forcefully logged out.');
-}
+/* export function logout() {
+	return console.log('Forcefully logged out.');
+} */

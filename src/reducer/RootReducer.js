@@ -32,6 +32,22 @@ function rootReducer(state = initialState, action) {
 				loginPending: true,
 				error: null,
 			};
+		case authenticationActions.AUTHENTICATION_SUCCESS:
+			return {
+				...state,
+				showLoginDialog: false,
+				loginPending: false,
+				user: action.user,
+				accessToken: action.accessToken,
+				error: null,
+			};
+		case authenticationActions.USER_LOGOUT:
+			return {
+				...state,
+				user: null,
+				accessToken: null,
+				error: null,
+			};
 
 		default:
 			//log('Hier Reducer: mein State ist immernoch: ');

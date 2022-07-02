@@ -1,24 +1,24 @@
-import LogoutButtonBootstrap from './LogoutButtonBootstrap';
-import { connect } from 'react-redux';
+import LogoutButtonBootstrap from './LogoutButtonBootstrap'
+import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
-	return state;
-};
+	return state
+}
 
 function PrivatPage(props) {
 	return (
-		<div className="main">
+		<div className='main' id='PrivatePage'>
 			<h1>Private Page</h1>
-			<section className="card">
-				<div className="watchBox">
+			<section className='card'>
+				<div className='watchBox'>
 					<h1>Hallo {props.user.userID}!</h1>
 				</div>
 			</section>
-			<section className="card">
+			<section className='card'>
 				<LogoutButtonBootstrap />
 			</section>
 		</div>
-	);
+	)
 }
 
-export default connect(mapStateToProps)(PrivatPage);
+export default connect(mapStateToProps)(PrivatPage)
